@@ -3,12 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:CollectionViewsXF"
              x:Class="CollectionViewsXF.MainPage">
-
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+    
+    <StackLayout x:Name="stackLayout">
+      
+        <CollectionView x:Name="cv"  ItemsSource="{Binding NameList}"  ItemSizingStrategy="MeasureAllItems"   
+                        VerticalOptions="Center" HorizontalOptions="Center" 
+                        HeightRequest="170" WidthRequest="200" Margin="10,10,10,0">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="{Binding Span}"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="Black"   CornerRadius="0"  HasShadow="False"  BackgroundColor="LightGray">
+                        <Grid RowSpacing="10"  >
+                            <Label Text="{Binding FirstName}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" LineBreakMode="WordWrap"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.EmptyView>
+                <Label Text="No data is available" TextColor="Red" FontSize="Medium"/>
+            </CollectionView.EmptyView>
+        </CollectionView>
     </StackLayout>
 
 </ContentPage>
